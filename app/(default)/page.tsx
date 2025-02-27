@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Home - Open PRO",
-  description: "Page description",
+  title: "Tune",
+  description: "Building the future of humanoid robotics.",
 };
 
 import PageIllustration from "@/components/page-illustration";
@@ -14,11 +14,11 @@ export default function Home() {
   return (
     <>
       <PageIllustration />
-      <Hero />
-      <Workflows />
+      {/* <Hero />
       <Features />
       <Testimonials />
-      <Cta />
+      <Cta /> */}
+      <Workflows />
     </>
   );
 }

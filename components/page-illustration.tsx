@@ -1,3 +1,6 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import Illustration from "@/public/images/page-illustration.svg";
 import BlurredShapeGray from "@/public/images/blurred-shape-gray.svg";
@@ -8,15 +11,35 @@ export default function PageIllustration({
 }: {
   multiple?: boolean;
 }) {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMousePosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <>
       <div
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/4"
+        className="pointer-events-none absolute left-1/3 top-1/10 -z-10"
+        style={{
+          transform: `translate(${mousePosition.x / 20}px, ${mousePosition.y / 20}px)`,
+        }}
         aria-hidden="true"
       >
         <Image
           className="max-w-none"
-          src={Illustration}
+          src={BlurredShapeGray}
           width={846}
           height={594}
           alt="Page illustration"
